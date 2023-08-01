@@ -1,0 +1,16 @@
+.welcome{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.welcome h1{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.welcome p{
+    letter-spacing: 4px;
+}

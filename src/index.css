@@ -9,10 +9,13 @@ p, span, button, a{
 }
 
 *{
-    background: #000;
     color: #fff;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+}
+
+body{
+    background: #000;
 }
