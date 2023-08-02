@@ -1,41 +1,44 @@
-import "./ThingstoDo.css"
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import "./Hotel.css";
+import React, {useState, useEffect} from 'react';
+import axios from "axios";
 
-const ThingsToDo = () => {
+const Hotel = () => {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [next, setNext] = useState();
     const [previous, setPrevious] = useState();
-    const [locationId, setLocationId] = useState(298571);
+    const [locationId, setLocationId] = useState(293919);
 
     const handleNext = () => {
       let newValue = locationId + 1; 
-      if(newValue == 298576){
-        newValue = 298571
+      if(newValue == 293919){
+        newValue = 298916;
       }
       setLocationId(newValue);
-      console.log("clicked");
     }
 
     const handlePrevious = () => {
       let newValue = locationId - 1; 
       setLocationId(newValue);
-      console.log("clicked");
     }
 
 
     useEffect(() => {
         const options = {
             method: 'GET',
-            url: 'https://travel-advisor.p.rapidapi.com/attractions/list',
+            url: 'https://travel-advisor.p.rapidapi.com/hotels/list',
             params: {
               location_id: locationId,
+              adults: '1',
+              rooms: '1',
+              nights: '2',
+              offset: '0',
               currency: 'USD',
-              lang: 'en_US',
-              lunit: 'km',
-              sort: 'recommended'
+              order: 'asc',
+              limit: '30',
+              sort: 'recommended',
+              lang: 'en_US'
             },
             headers: {
               'X-RapidAPI-Key': '7b7fc55551msh75c870ab4ca9d94p1708d5jsn1233d8d9fad4',
@@ -79,7 +82,7 @@ const ThingsToDo = () => {
   }else{
     return (
       <div className='ttd'>
-        <h1 className="head">Discover Captivating Destinations and Attractions</h1>
+        <h1 className="head">Book Your Dream Getaway Today</h1>
           <div className="ttd-container">
             {
                 todos.map((todo) => {
@@ -99,23 +102,30 @@ const ThingsToDo = () => {
                                   <h1>Lorem ipsum dolor sit amet.</h1>
                                 }
   
-                                {todo.address?
-                                  <p><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> {todo.address}</p> :
-                                  <p><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> Lorem ipsum dolor sit amet consectetur.</p>
+                                {todo.latitude?
+                                  <p><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> Latitude: {todo.latitude}</p> :
+                                  <p><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> Longitude: 12.945731</p>
                                 }
   
-                                {todo.phone?
-                                  <p className="contact"><i class="fa-solid fa-phone-volume" style={{color: "#000"}}></i> {todo.phone}</p> :
-                                  <p className="contact"><i class="fa-solid fa-phone-volume" style={{color: "#000"}}></i> +12345678910</p>
+                                {todo.longitude?
+                                  <p className="contact"><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> {todo.longitude}</p> :
+                                  <p className="contact"><i class="fa-solid fa-location-dot" style={{color: "#000"}}></i> +12345678910</p>
                                 }
   
-                                {}
-                                {todo.description?
-                                  <p>{todo.description}</p> : 
+                                {todo.timezone?
+                                    <p><i class="fa-solid fa-clock" style={{color: "#000"}}></i> {todo.timezone}</p> :
+                                    <p><i class="fa-solid fa-clock" style={{color: "#000"}}></i> Lorem/ipsum</p>
+                                }
+
+                                {todo.price?
+                                    <p className="contact"><i class="fa-solid fa-hand-holding-dollar" style={{color: "#000"}}></i> Price: {todo.price}</p> :
+                                    <p className="contact"><i class="fa-solid fa-hand-holding-dollar" style={{color: "#000"}}></i> Price: $45 - $81</p>
+                                }
+
+                                {todo.ranking?
+                                  <p>Ranking: <br/>{todo.ranking}</p> : 
                                   <p>Lorem ipsum dolor sit amet consectetur adipisicing 
-                                    elit. Voluptatum nulla error repellat saepe odit explicabo 
-                                    enim. Fugiat amet, at ut ipsum consequatur consequuntur est 
-                                    esse voluptatem dolorem quos laborum earum!
+                                    elit. Voluptatum nulla error.
                                     </p>
                                 }
                             </div>
@@ -133,4 +143,4 @@ const ThingsToDo = () => {
   }
 }
 
-export default ThingsToDo
+export default Hotel
