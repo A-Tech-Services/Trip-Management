@@ -6,8 +6,8 @@ const Hotel = () => {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [next, setNext] = useState();
-    const [previous, setPrevious] = useState();
+    // const [next, setNext] = useState();
+    // const [previous, setPrevious] = useState();
     const [locationId, setLocationId] = useState(293918);
 
     const handleNext = () => {
