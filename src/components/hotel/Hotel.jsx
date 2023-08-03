@@ -8,11 +8,11 @@ const Hotel = () => {
     const [error, setError] = useState(null);
     const [next, setNext] = useState();
     const [previous, setPrevious] = useState();
-    const [locationId, setLocationId] = useState(293919);
+    const [locationId, setLocationId] = useState(293918);
 
     const handleNext = () => {
       let newValue = locationId + 1; 
-      if(newValue == 293919){
+      if(newValue == 293918){
         newValue = 298916;
       }
       setLocationId(newValue);
